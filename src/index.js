@@ -7,4 +7,7 @@ createApp(App).use(router).mount('#app');
 
 import './index.scss';
 
-document.addEventListener('DOMContentLoaded', async() => (await import('./events')).loaded());
+document.addEventListener('DOMContentLoaded', () => {
+	document.querySelector('title').textContent = 'LapisNet';
+	document.documentElement.lang = 'zh-Hans-CN';
+});
