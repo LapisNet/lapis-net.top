@@ -58,9 +58,14 @@ onBeforeMount(async() => {
 #news {
 	display: block;
 	padding: 1em;
-	background-color: #0008;
+	background-color: #c8c8;
 	border-radius: 16px;
 	width: fit-content;
+}
+@media (prefers-color-scheme: dark) {
+	#news {
+		background-color: #0008;
+	}
 }
 </style>
 
