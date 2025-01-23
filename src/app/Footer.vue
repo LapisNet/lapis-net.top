@@ -1,3 +1,42 @@
+<script setup>
+import {onMounted} from 'vue';
+let footer, touchStartX, touchStartY;
+onMounted(() => {
+	footer = document.getElementById('footer');
+});
+
+document.addEventListener('wheel', (e) => { // pc端滚轮影响页脚
+	if(!!e.wheelDelta) {
+		if(e.wheelDelta > 0) { // 上滚
+			footer.classList.remove('scrolled');
+		} else { // 下滚
+			footer.classList.add('scrolled');
+		}
+	}
+});
+
+document.addEventListener('touchstart', (e) => { // 移动端开始触摸
+	if(import.meta.env.DEV) console.log('开始触摸');
+	touchStartX = e.touches[0].clientX;
+	touchStartY = e.touches[0].clientY;
+});
+
+document.addEventListener('touchmove', (e) => { // 移动端触摸移动
+	if(import.meta.env.DEV) console.log('触摸移动');
+	let touchEndX = e.touches[0].clientX;
+	let touchEndY = e.touches[0].clientY;
+
+	let x = touchEndX - touchStartX;
+	let y = touchEndY - touchStartY;
+	
+	if(Math.abs(y) > Math.abs(x) && y > 0) { // 上滑
+		footer.classList.remove('scrolled');
+	} if(Math.abs(y) > Math.abs(x) && y < 0) { // 下滑
+		footer.classList.add('scrolled');
+	}
+});
+</script>
+
 <template>
 	<div id="footer">
 		<p>Copyright (c) 2025 LapisNet. All rights reserved.</p>
@@ -31,6 +70,11 @@
 	grid-template-columns: 22.6em 15% 15% 15%;
 	font-size: 16px;
 	height: fit-content;
+	transition: opacity 0.3s ease-in-out;
+	&.scrolled {
+		opacity: 0;
+		pointer-events: none;
+	}
 }
 .content {
 	&::before {
