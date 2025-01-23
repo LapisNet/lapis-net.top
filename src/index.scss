@@ -38,10 +38,27 @@
 		height: 64px;
 		margin: 0 auto;
 		background-image: url('/favicon.ico');
-		background-size: cover;
-		background-position: center 80%;
+		background-size: contain;
 		background-repeat: no-repeat;
 		animation: spin 1s linear infinite;
+	}
+}
+
+.no-more {
+	margin-top: 0.8em;
+	color: var(--pico-secondary);
+	display: inline-flex;
+	align-items: center;
+	&::before {
+		content: '';
+		display: block;
+		width: 32px;
+		height: 32px;
+		margin-right: 0.2em;
+		background-image: url('/res/elytra_broken.png');
+		background-size: contain;
+		background-repeat: no-repeat;
+		transform: rotate(-45deg);
 	}
 }
 
@@ -78,7 +95,7 @@
 	padding: 1.2em;
 	margin: 0.4em;
 	width: 90%;
-	background-color: #00bfff7a;
+	background-color: var(--pico-primary-underline);
 	border-radius: 0.8em;
 	-webkit-user-select: none;
 	user-select: none;
@@ -94,6 +111,24 @@
 		font-size: 1.2em;
 		font-weight: bold;
 		margin-bottom: 0.1em;
+	}
+}
+
+.card.card-project {
+	& .pj-icon {
+		width: 20%;
+		border-radius: 0.4em;
+	}
+	& .pj-title {
+		color: var(--pico-primary);
+		font-size: 1.2em;
+		font-weight: bold;
+		margin-bottom: 0.1em;
+	}
+	& .pj-subtitle {
+		color: var(--pico-secondary);
+		font-size: 0.9em;
+		margin-bottom: 0.2em;
 	}
 }
 
@@ -117,3 +152,24 @@
 	-webkit-user-select: none;
 	user-select: none;
 }
+
+a:not(.button):not([role="button"]):not([type="button"]) {
+	padding: 0.2em;
+	text-decoration: none;
+	transition: background-color 0.5s ease, border-radius 0.5s ease;
+	&:hover {
+		border-radius: 0.2em;
+		background-color: rgba(137, 153, 249, 0.2);
+	}
+	&::before {
+		margin-right: 0.2em;
+	}
+	&[target="_blank"]::after {
+		content: '\f35d';
+		font-family: 'Font Awesome 6 Free';
+		font-weight: 900;
+		margin-left: 0.2em;
+	}
+}
+
+@import url('./lapis.pico.min.css');
