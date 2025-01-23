@@ -6,10 +6,10 @@ const router = useRouter();
 <template>
 	<div id="nav">
 		<div id="left">
-			<router-link to="/" data-first>LapisNet</router-link>
+			<router-link to="/" data-first><span class="--lapis-icon"></span></router-link>
 
-			<router-link to="/" class="home">主页</router-link>
 			<router-link to="/member" class="member">成员</router-link>
+			<router-link to="/project" class>项目</router-link>
 		</div>
 		<div id="right">
 			<router-link to="/about" class="about">关于</router-link>
@@ -22,8 +22,22 @@ const router = useRouter();
 a {
 	text-decoration: none;
 }
-.icon {
-	height: 1.35em;
+.--lapis-icon {
+	&::before {
+		content: '';
+		display: inline-block;
+		width: 32px;
+		height: 32px;
+		margin-bottom: -0.4em;
+		background: url('/favicon.ico') no-repeat center;
+		background-size: contain;
+	}
+	&::after {
+		content: 'LapisNet';
+		font-family: Minecraft;
+		font-size: 1.2em;
+		font-weight: bold;
+	}
 }
 #left {
 	width: 50%;
@@ -41,7 +55,7 @@ a {
 	}
 }
 #time {
-	font-family: var(--Minecraft-fonts);
+	font-family: Minecraft;
 	font-style: normal;
 	user-select: none;
 	&:hover::before {
@@ -58,6 +72,19 @@ a {
 		background-repeat: no-repeat;
 		background-position: center;
 		transition: transform 0.3s ease-in-out;
+	}
+}
+@media screen and (max-width: 768px) {
+	.--lapis-icon {
+		margin-left: -12px;
+		&::before {
+			width: 24px;
+			height: 24px;
+			background-size: contain;
+		}
+		&::after {
+			font-size: 1em;
+		}
 	}
 }
 </style>
