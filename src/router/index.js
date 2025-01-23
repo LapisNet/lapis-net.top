@@ -5,7 +5,8 @@ const routes = [
 	{path: '/about', component: () => import('@pages/About.vue')},
 	{path: '/member', component: () => import('@pages/Member.vue')},
 	{path: '/:pathMatch(.*)*', redirect: '/404'},
-	{path: '/404', component: () => import('@pages/404.vue')}
+	{path: '/404', component: () => import('@pages/404.vue')},
+	{path: '/project', component: () => import('@pages/Project.vue')}
 ];
 
 const router = createRouter({
