@@ -15,14 +15,15 @@ function openLink(url) {
 	<div id="main">
 		<div class="title">成员列表</div>
 		<div class="content">
-			<p class="loading" v-show="members.length === 0">Loading...</p>
-			<div id="mb-ls" v-show="members.length > 0">
-				<div class="card" v-for="member in members" :key="member.name" @click="!!member.url && openLink(member.url)">
+			<p class="loading" v-if="members.length === 0">Loading...</p>
+			<div id="mb-ls" v-else>
+				<div class="card" v-for="member in members" :key="member.name" @click="!!member.url && openLink(member.url)" v-show="member._show">
 					<img class="avatar" :src="member.avatar === 'none'? '/res/default_avatar.svg': member.avatar" alt="avatar" :title="member.name">
 					<div class="name">{{member.name}}{{member.aka? ` (${member.aka})`: ''}}</div>
 					<div class="role">{{member.role}}</div>
 				</div>
 			</div>
+			<p class="no-more" v-show="false">到底了...</p>
 		</div>
 	</div>
 </template>
@@ -32,13 +33,13 @@ function openLink(url) {
 	display: grid;
 	align-items: baseline;
 	justify-content: space-evenly;
-	grid-template-columns: 1fr 1fr 1fr 1fr;
-	grid-template-rows: auto auto auto auto;
+	grid-template-columns: repeat(4, 1fr);
+	grid-template-rows: repeat(4, auto);
 }
 @media screen and (max-width: 768px) {
 	#mb-ls {
 		grid-template-columns: 1fr;
-		grid-template-rows: auto auto;
+		grid-template-rows: repeat(2, auto);
 	}
 }
 </style>
