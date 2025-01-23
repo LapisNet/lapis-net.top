@@ -69,18 +69,14 @@ export default {
 		return {time: 'Loading...'};
 	},
 	mounted() {
-		let _this = this;
-		function getTime() {
+		/** 初始化时钟 */
+		setInterval(() => {
 			const now = new Date();
-			const hour = now.getHours() < 10? '0' + now.getHours() : now.getHours();
-			const minute = now.getMinutes() < 10? '0' + now.getMinutes() : now.getMinutes();
-			const period = now.getHours() >= 12? 'PM' : 'AM';
-			_this.time = `${hour}:${minute} ${period}`;
-		}
-		this.timer = setInterval(getTime, 30000) && getTime();
-	},
-	beforeDestroy() {
-		!!this.timer && clearInterval(this.timer);
+			const hour = now.getHours() < 10? `0${now.getHours()}`: now.getHours();
+			const minute = now.getMinutes() < 10? `0${now.getMinutes()}`: now.getMinutes();
+			const period = hour < 12? 'AM': 'PM';
+			this.time = `${hour}:${minute} ${period}`;
+		}, 1000);
 	}
 }
 </script>
