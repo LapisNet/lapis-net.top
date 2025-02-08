@@ -1,1 +1,2 @@
 # lapis-net.top
+[![Page Build and Deploy](https://github.com/LapisNet/lapis-net.top/actions/workflows/page-build-deploy.yml/badge.svg)](https://github.com/LapisNet/lapis-net.top/actions/workflows/page-build-deploy.yml)
