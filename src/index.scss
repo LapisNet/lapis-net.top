@@ -5,8 +5,12 @@
 @font-face {
 	font-family: Minecraft;
 	font-display: swap;
-	src: local('Minecraft Seven v2'), url('/res/MinecraftSevenv2-Regular.woff2') format('woff2'),
-		 local('unifont'), url('/res/unifont-15.1.05.woff2') format('woff2');
+	src: local('Minecraft Seven v2'), url('/res/MinecraftSevenv2-Regular.woff2') format('woff2');
+}
+@font-face {
+	font-family: Unifont;
+	font-display: swap;
+	src: local('Unifont'), url('/res/unifont-15.1.05.woff2') format('woff2');
 }
 
 @keyframes spin {
@@ -136,6 +140,7 @@
 	padding: 0.4em 1em 0.8em;
 	width: 100%;
 	display: inline-flex;
+	align-items: baseline;
 	justify-content: space-between;
 	background: linear-gradient(to right, #5a83e25b, #3b58985b);
 }
