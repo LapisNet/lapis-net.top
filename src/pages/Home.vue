@@ -20,7 +20,7 @@ function paseDate(date) {
 
 const news = ref([]);
 onBeforeMount(async() => {
-	const res = await fetch('https://ghproxy.cfd/https://raw.githubusercontent.com/LapisNet/.public_data/refs/heads/main/news.txt');
+	const res = await fetch('https://ghfast.top/https://raw.githubusercontent.com/LapisNet/.public_data/refs/heads/main/news.txt');
 	let text = await res.text();
 	text = text.trim().split('\n');
 	for(text of text) {

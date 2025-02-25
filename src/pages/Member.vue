@@ -3,7 +3,7 @@ import {ref, onBeforeMount} from 'vue';
 
 const members = ref([]);
 onBeforeMount(async() => {
-	const res = await fetch('https://ghproxy.cfd/https://raw.githubusercontent.com/LapisNet/.public_data/refs/heads/main/members.json');
+	const res = await fetch('https://ghfast.top/https://raw.githubusercontent.com/LapisNet/.public_data/refs/heads/main/members.json');
 	members.value = await res.json();
 });
 function openLink(url) {

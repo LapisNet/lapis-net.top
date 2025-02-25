@@ -3,7 +3,7 @@ import {ref, onBeforeMount} from 'vue';
 
 const projects = ref([]);
 onBeforeMount(async() => {
-	const res = await fetch('https://ghproxy.cn/https://raw.githubusercontent.com/LapisNet/.public_data/refs/heads/main/projects.json');
+	const res = await fetch('https://ghfast.top/https://raw.githubusercontent.com/LapisNet/.public_data/refs/heads/main/projects.json');
 	projects.value = await res.json();
 });
 </script>
