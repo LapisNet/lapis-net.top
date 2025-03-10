@@ -56,7 +56,6 @@ document.addEventListener('touchmove', (e) => { // 移动端触摸移动
 			<a href="https://mcisee.top" target="_blank" rel="noopener noreferrer">所见皆是MC</a><br>
 			<a href="https://fds.moe" target="_blank" rel="noopener noreferrer">FDS</a><br>
 			<a href="https://mc.xzwmc.com" target="_blank" rel="noopener noreferrer">饼盒</a><br>
-			<a href="https://mccfk.cn" target="_blank" rel="noopener noreferrer">草方块社区</a><br>
 		</div>
 	</div>
 </template>
