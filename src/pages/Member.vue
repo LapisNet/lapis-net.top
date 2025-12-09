@@ -1,14 +1,20 @@
 <script setup>
 import {ref, onBeforeMount} from 'vue';
 
+/** @type {{
+_show?: boolean;
+name: string;
+url?: string;
+avatar: string;
+role: string;
+aka?: string;
+}[]} */
 const members = ref([]);
 onBeforeMount(async() => {
 	const res = await fetch('https://ghfast.top/https://raw.githubusercontent.com/LapisNet/.public_data/refs/heads/main/members.json');
 	members.value = await res.json();
 });
-function openLink(url) {
-	window.open(url, '_blank', 'noopener noreferrer');
-}
+const openLink = (url) => url && window.open(url, '_blank', 'noopener,noreferrer');
 </script>
 
 <template>
@@ -17,11 +23,16 @@ function openLink(url) {
 		<div class="content">
 			<p class="loading" v-if="members.length === 0">Loading...</p>
 			<div id="mb-ls" v-else>
-				<div class="card" v-for="member in members" :key="member.name" @click="!!member.url && openLink(member.url)" v-show="member._show">
-					<img class="avatar" :src="member.avatar === 'none'? '/res/default_avatar.svg': member.avatar" alt="avatar" :title="member.name">
-					<div class="name">{{member.name}}{{member.aka? ` (${member.aka})`: ''}}</div>
-					<div class="role">{{member.role}}</div>
-				</div>
+				<a class="card" v-for="member in members" :key="member.name" :href="member.url ?? '#'" @click.prevent="openLink(member.url)" v-show="typeof member._show === 'undefined' || member._show">
+					<span class="header">
+						<img class="avatar" :src="member.avatar === 'none'? '/res/default_avatar.svg': member.avatar" alt="avatar" :title="member.name">
+						<span class="name">
+							{{member.name}}
+							<span class="aka" v-if="member.aka">{{member.aka? `${member.aka}`: ''}}</span>
+						</span>
+					</span>
+					<span class="role">{{member.role}}</span>
+				</a>
 			</div>
 			<p class="no-more" v-show="false">到底了...</p>
 		</div>

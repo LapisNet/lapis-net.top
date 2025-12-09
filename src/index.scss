@@ -7,6 +7,7 @@
 	font-display: swap;
 	src: local('Minecraft Seven v2'), url('/res/MinecraftSevenv2-Regular.woff2') format('woff2');
 }
+
 @font-face {
 	font-family: Unifont;
 	font-display: swap;
@@ -14,8 +15,9 @@
 }
 
 @keyframes spin {
-	from {transform: rotate(0deg);}
-	to {transform: rotate(360deg);}
+	from { transform: rotate(0deg); }
+
+	to { transform: rotate(360deg); }
 }
 
 .app-enter-from {
@@ -35,6 +37,7 @@
 .loading {
 	display: inline-flex;
 	align-items: center;
+
 	&::before {
 		content: '';
 		display: block;
@@ -53,6 +56,7 @@
 	color: var(--pico-secondary);
 	display: inline-flex;
 	align-items: center;
+
 	&::before {
 		content: '';
 		display: block;
@@ -73,9 +77,11 @@
 	font-size: 145%;
 	-webkit-user-select: none;
 	user-select: none;
+
 	&:hover::before {
 		transform: rotate(360deg);
 	}
+
 	&::before {
 		content: '';
 		display: block;
@@ -96,6 +102,7 @@
 }
 
 .card {
+	text-decoration: none;
 	padding: 1.2em;
 	margin: 0.4em;
 	width: 90%;
@@ -104,17 +111,54 @@
 	-webkit-user-select: none;
 	user-select: none;
 	transition: transform 0.3s ease-in-out;
+
 	&:hover {
-		transform: matrix(1.05, 0, 0, 1.05, 0, 0);
+		transform: scale(1.05);
+		cursor: pointer;
+		.avatar {
+			transform: rotate(360deg);
+		}
 	}
+
+	&>* {
+		display: block;
+	}
+
+	.header {
+		display: inline-flex;
+		align-items: center;
+	}
+
 	& .avatar {
 		width: 20%;
 		border-radius: 50%;
+		margin-right: 0.4em;
+		border: 2px solid;
+		filter: drop-shadow(0px 4px 2px rgba(0, 0, 0, 0.2));
+		transition: transform 0.3s ease-in-out;
 	}
+
 	& .name {
-		font-size: 1.2em;
+		display: inline-block;
+		font-size: 1em;
 		font-weight: bold;
-		margin-bottom: 0.1em;
+	}
+
+	.aka {
+		display: block;
+		font-size: 0.5em;
+		color: var(--pico-secondary);
+
+		&::before,
+		&::after {
+			padding: 0 0.4em;
+			content: '-';
+		}
+	}
+
+	.role {
+		font-size: 0.8em;
+		color: var(--pico-contrast);
 	}
 }
 
@@ -123,12 +167,14 @@
 		width: 20%;
 		border-radius: 0.4em;
 	}
+
 	& .pj-title {
 		color: var(--pico-primary);
 		font-size: 1.2em;
 		font-weight: bold;
 		margin-bottom: 0.1em;
 	}
+
 	& .pj-subtitle {
 		color: var(--pico-secondary);
 		font-size: 0.9em;
@@ -158,17 +204,20 @@
 	user-select: none;
 }
 
-a:not(.button):not([role="button"]):not([type="button"]) {
+a:not(.card):not(.button):not([role="button"]):not([type="button"]) {
 	padding: 0.2em;
 	text-decoration: none;
 	transition: background-color 0.5s ease, border-radius 0.5s ease;
+
 	&:hover {
 		border-radius: 0.2em;
 		background-color: rgba(137, 153, 249, 0.2);
 	}
+
 	&::before {
 		margin-right: 0.2em;
 	}
+
 	&[target="_blank"]::after {
 		content: '\f35d';
 		font-family: 'Font Awesome 6 Free';
