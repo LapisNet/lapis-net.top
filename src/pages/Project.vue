@@ -25,7 +25,7 @@ onBeforeMount(async() => {
 						<div class="info2" :innerHTML="item.info2"></div>
 					</div>
 					<div class="pj-repo" v-if="!!item.repo">
-						<a :class="`fab fa-${item.repotype || 'github'}`" :herf="`https://${item.repotype || 'github'}.com/${item.repo}`" target="_blank" rel="noopener noreferrer">访问仓库</a>
+						<a :class="`fab fa-${item.repotype || 'github'}`" :href="`https://${item.repotype || 'github'}.com/${item.repo}`" target="_blank" rel="noopener noreferrer">访问仓库</a>
 					</div>
 				</div>
 				<p class="no-more">没有更多项目了...</p>
