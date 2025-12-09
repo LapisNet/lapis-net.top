@@ -160,6 +160,20 @@
 		font-size: 0.8em;
 		color: var(--pico-contrast);
 	}
+
+	@media screen and (max-width: 768px) {
+		.name {
+			font-size: 1.5em;
+		}
+
+		.aka {
+			font-size: 0.75em;
+		}
+
+		.role {
+			font-size: 1.25em;
+		}
+	}
 }
 
 .card.card-project {
