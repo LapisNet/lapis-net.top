@@ -12,7 +12,7 @@ permissions:
 
 concurrency:
   group: "pages"
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   build-and-deploy:
@@ -23,25 +23,25 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v4
       - name: Setup Node.js
-        uses: actions/setup-node@v4.2.0
+        uses: actions/setup-node@v4
         with:
-          node-version: 20.17.0
-          cache: 'npm'
+          node-version: 22
+          cache: pnpm
       - name: Build
         run: |
-          corepack enable
-          corepack use yarn@4.6.0
-          yarn install
-          yarn build
+          pnpm install --frozen-lockfile
+          pnpm build
           # copy index.html to 404.html for GitHub Pages
           cp ./dist/index.html ./dist/404.html
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload Artifacts
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
         with:
-          path: './dist'
+          path: dist
       - name: Deploy Pages
         id: deployment
         uses: actions/deploy-pages@v4
