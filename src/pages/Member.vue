@@ -1,14 +1,7 @@
 <script setup>
 import {ref, onBeforeMount} from 'vue';
 
-/** @type {{
-_show?: boolean;
-name: string;
-url?: string;
-avatar: string;
-role: string;
-aka?: string;
-}[]} */
+/** @type {Member[]} */
 const members = ref([]);
 onBeforeMount(async() => {
 	const res = await fetch('https://ghfast.top/https://raw.githubusercontent.com/LapisNet/.public_data/refs/heads/main/members.json');
@@ -25,7 +18,7 @@ const openLink = (url) => url && window.open(url, '_blank', 'noopener,noreferrer
 			<div id="mb-ls" v-else>
 				<a class="card" v-for="member in members" :key="member.name" :href="member.url ?? '#'" @click.prevent="openLink(member.url)" v-show="typeof member._show === 'undefined' || member._show">
 					<span class="header">
-						<img class="avatar" :src="member.avatar === 'none'? '/res/default_avatar.svg': member.avatar" alt="avatar" :title="member.name">
+						<img class="avatar" @error="$event.target.src = '/res/default_avatar.svg'" :src="member.avatar === 'none'? '/res/default_avatar.svg': member.avatar" alt="avatar" :title="member.name">
 						<span class="name">
 							{{member.name}}
 							<span class="aka" v-if="member.aka">{{member.aka? `${member.aka}`: ''}}</span>
@@ -40,6 +33,9 @@ const openLink = (url) => url && window.open(url, '_blank', 'noopener,noreferrer
 </template>
 
 <style scoped>
+.avatar {
+	background-color: #fff;
+}
 #mb-ls {
 	display: grid;
 	align-items: baseline;
