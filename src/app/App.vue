@@ -1,3 +1,8 @@
+<script setup>
+import Nav from './Nav.vue';
+import Footer from './Footer.vue';
+</script>
+
 <template>
 	<Nav />
 	<router-view v-slot="{Component}">
@@ -7,15 +12,3 @@
 	</router-view>
 	<Footer />
 </template>
-
-<script>
-import Nav from './Nav.vue';
-import Footer from './Footer.vue';
-export default {
-	name: 'App',
-	components: {
-		Nav,
-		Footer
-	}
-}
-</script>

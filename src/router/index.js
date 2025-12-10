@@ -6,7 +6,8 @@ const routes = [
 	{path: '/member', component: () => import('@pages/Member.vue')},
 	{path: '/:pathMatch(.*)*', redirect: '/404'},
 	{path: '/404', component: () => import('@pages/404.vue')},
-	{path: '/project', component: () => import('@pages/Project.vue')}
+	{path: '/project', component: () => import('@pages/Project.vue')},
+	{path: '/debug', component: () => import('@pages/Debug.vue')}
 ];
 
 const router = createRouter({
