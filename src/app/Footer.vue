@@ -6,14 +6,16 @@ onMounted(() => {
 });
 
 document.addEventListener('wheel', (e) => { // pc端滚轮影响页脚
-	if(!!e.wheelDelta) {
+	if(e.wheelDelta) {
 		if(e.wheelDelta > 0) { // 上滚
-			footer.classList.remove('scrolled');
-		} else { // 下滚
 			footer.classList.add('scrolled');
+		} else { // 下滚
+			footer.classList.remove('scrolled');
 		}
 	}
 });
+
+if(navigator.maxTouchPoints > 0) { // 有触摸点，说明是触摸设备
 
 document.addEventListener('touchstart', (e) => { // 移动端开始触摸
 	if(import.meta.env.DEV) console.log('开始触摸');
@@ -30,15 +32,17 @@ document.addEventListener('touchmove', (e) => { // 移动端触摸移动
 	let y = touchEndY - touchStartY;
 	
 	if(Math.abs(y) > Math.abs(x) && y > 0) { // 上滑
-		footer.classList.remove('scrolled');
-	} if(Math.abs(y) > Math.abs(x) && y < 0) { // 下滑
 		footer.classList.add('scrolled');
+	} if(Math.abs(y) > Math.abs(x) && y < 0) { // 下滑
+		footer.classList.remove('scrolled');
 	}
 });
+
+}
 </script>
 
 <template>
-	<div id="footer">
+	<div id="footer" class="scrolled">
 		<div class="content">
 			<img class="banner" title="LapisNet" src="/res/banner.webp" />
 			<p>Copyright (c) 2025 LapisNet. All rights reserved.</p>
