@@ -1,5 +1,5 @@
 <script setup>
-import { statusTexts } from '../shared';
+const types = ['unknown', 'wip', 'normal', 'deprecated', 'archived'];
 </script>
 
 <template>
@@ -8,7 +8,7 @@ import { statusTexts } from '../shared';
 		<div class="content">
 			<h2 id="status-badge">Status Badge</h2>
 			<div class="card card-project" style="width: fit-content;">
-				<span class="status-badge" v-for="(text, type) in statusTexts" :key="type" :data-type="type" style="margin-top: 0.4em;">{{ text }}</span>
+				<status-badge v-for="type in types" :key="type" :type="type" style="margin: 0.4em;" />
 			</div>
 		</div>
 	</div>

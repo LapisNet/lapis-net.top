@@ -1,9 +1,12 @@
 import {createApp} from 'vue';
 import router from './router';
+import defineComponents from './components';
 
 import App from './app';
 
-createApp(App).use(router).mount('#app');
+const app = createApp(App);
+defineComponents(app);
+app.use(router).mount('#app');
 
 import './index.scss';
 

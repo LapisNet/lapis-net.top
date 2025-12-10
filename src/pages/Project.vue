@@ -1,6 +1,5 @@
 <script setup>
 import {ref, onBeforeMount} from 'vue';
-import { statusTexts } from '../shared';
 
 /** @type {Project[]} */
 const projects = ref([]);
@@ -21,7 +20,7 @@ onBeforeMount(async() => {
 					<span class="pj-name">
 						<div class="pj-title">{{item.title}}</div>
 						<div class="pj-subtitle" :innerHTML="item.sub_title"></div>
-						<span class="status-badge" title="状态" :data-type="item._status ?? 'unknown'">{{ statusTexts[item._status ?? 'unknown'] }}</span>
+						<status-badge :type="item._status" />
 					</span>
 					<div class="pj-desc">
 						<div class="info1" :innerHTML="item.info1"></div>
