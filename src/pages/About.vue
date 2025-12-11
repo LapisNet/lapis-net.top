@@ -19,26 +19,12 @@
 				都欢迎加入我们!<br>
 			</p>
 			<p>
-				你可以通过以下方式加入我们：<br>
-				<dl>
-					<dd><a href="https://qm.qq.com/q/i0F8L4P1jW">QQ外群</a><i class="fab fa-qq"></i></dd>
-					<dd><a href="https://discord.gg/m6BwyRp7Mv">Discord群组</a><i class="fab fa-discord"></i></dd>
-				</dl>
+				你可以通过以下方式加入我们：
 			</p>
+			<dl>
+				<dd><a href="https://qm.qq.com/q/i0F8L4P1jW">QQ外群</a></dd>
+				<dd><a href="https://discord.gg/m6BwyRp7Mv">Discord群组</a></dd>
+			</dl>
 		</div>
 	</div>
 </template>
-
-<style scoped>
-i {
-	width: 1em;
-	height: 1em;
-	margin-left: 0.2em;
-}
-</style>
-
-<script>
-export default {
-	name: 'About'
-}
-</script>
