@@ -1,11 +1,15 @@
 <script setup>
 import {ref, onBeforeMount} from 'vue';
+import json5 from 'json5';
+import { parseRawText } from '../libs/late-marked';
 
 /** @type {Project[]} */
 const projects = ref([]);
+const showedProjectCount = ref(0);
 onBeforeMount(async() => {
 	const res = await fetch('https://ghfast.top/https://raw.githubusercontent.com/LapisNet/.public_data/refs/heads/main/projects.json');
-	projects.value = await res.json();
+	projects.value = json5.parse(await res.text());
+	projects.value.forEach(pj => (typeof pj._show === 'undefined' || pj._show) && showedProjectCount.value++);
 });
 </script>
 
@@ -14,24 +18,29 @@ onBeforeMount(async() => {
 		<div class="title">项目列表</div>
 		<div class="content">
 			<p class="loading" v-if="projects.length === 0">正在加载...</p>
-			<div id="pj-ls" :style="`grid-template-rows: repeat(${Math.ceil(projects.length / 2)}, 1fr);`" v-else>
-				<div class="card card-project" v-for="item in projects" :key="item.title" v-show="typeof item._show === 'undefined' || item._show">
-					<img class="pj-icon" :src="item.icon" :alt="item.title" v-if="!!item.icon" />
-					<span class="pj-name">
-						<div class="pj-title">{{item.title}}</div>
-						<div class="pj-subtitle" :innerHTML="item.sub_title"></div>
-						<status-badge :type="item._status" />
-					</span>
-					<div class="pj-desc">
-						<div class="info1" :innerHTML="item.info1"></div>
-						<div class="info2" :innerHTML="item.info2"></div>
-					</div>
-					<div class="pj-repo" v-if="!!item.repo">
-						<a :class="`fab fa-${item.repotype || 'github'}`" :href="`https://${item.repotype || 'github.com'}/${item.repo}`" target="_blank" rel="noopener noreferrer">访问仓库</a>
-					</div>
-				</div><br />
+			<template v-else>
+				<div id="pj-ls" :style="`grid-template-rows: repeat(${Math.ceil(showedProjectCount / 2)}, 1fr);`">
+					<template v-for="item in projects" :key="item.title">
+						<div class="card card-project" v-if="typeof item._show === 'undefined' || item._show">
+							<img class="pj-icon" :src="item.icon" :alt="item.title" v-if="!!item.icon" />
+							<span class="pj-name">
+								<div class="pj-title">{{item.title}}</div>
+								<div class="pj-subtitle" v-if="item.sub_title" v-html="parseRawText(item?.sub_title)"></div>
+								<status-badge :type="item._status" />
+							</span>
+							<div class="pj-desc">
+								<div class="info1" v-if="item.info1" v-html="parseRawText(item?.info1)"></div>
+								<div class="info2" v-if="item.info2" v-html="parseRawText(item?.info2)"></div>
+							</div>
+							<div class="pj-link">
+								<a v-if="item.repo" :class="`fab fa-${(item?.repo_type ?? 'github').split('.')[0]}`" :href="`https://${item.repo_type ?? 'github.com'}/${item.repo}`" target="_blank" rel="noopener noreferrer">访问仓库</a>
+								<a v-if="item.url" :href="item.url" target="_blank" rel="noopener">访问链接</a>
+							</div>
+						</div>
+					</template>
+				</div>
 				<p class="no-more">没有更多项目了...</p>
-			</div>
+			</template>
 		</div>
 	</div>
 </template>

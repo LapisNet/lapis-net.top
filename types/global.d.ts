@@ -29,6 +29,8 @@ type Project = {
 	repo_type?: string;
 	/** 许可证 */
 	license?: string;
+	/** 链接 */
+	url?: string;
 };
 
 type Member = {
