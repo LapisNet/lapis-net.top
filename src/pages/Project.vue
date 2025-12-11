@@ -29,7 +29,7 @@ onBeforeMount(async() => {
 								<status-badge :type="item._status" />
 							</span>
 							<div class="pj-desc">
-								<div class="info1" v-if="item.info1" v-html="parseRawText(item?.info1)"></div>
+								<div class="info1" v-html="parseRawText(item?.info1 ?? '/未提供信息/')" :style="item.info1? {}: { color: 'grey' }"></div>
 								<div class="info2" v-if="item.info2" v-html="parseRawText(item?.info2)"></div>
 							</div>
 							<div class="pj-link">
