@@ -29,14 +29,13 @@
 	width: 100vw;
 	height: 100vh;
 	overflow-x: hidden;
-	scrollbar-width: thin;
-	scrollbar-color: transparent transparent;
-	&:hover {
-		scrollbar-color: var(--pico-primary) rgba(0, 0, 0, 0.1);
-	}
+
+	display: flex;
+	flex-direction: column;
 }
 
 #nav {
+	position: -webkit-sticky;
 	position: sticky;
 	top: 0;
 	z-index: 10;
@@ -54,10 +53,12 @@
 }
 
 #footer {
-	position: fixed;
+	position: -webkit-sticky;
+	position: sticky;
+	top: 100vh;
 	bottom: 0;
 	width: 100%;
-	backdrop-filter: blur(10px);
+	// backdrop-filter: blur(10px);
 	background: var(--custom-background);
 	-webkit-user-select: none;
 	user-select: none;
