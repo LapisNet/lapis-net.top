@@ -1,53 +1,61 @@
 <script setup>
-import {ref, onMounted, useTemplateRef} from 'vue';
-import {useRouter} from 'vue-router';
-const router = useRouter();
+import { ref, onMounted } from 'vue';
+import { pages } from '../router';
 
-const time = ref('Loading...');
+const showMenu = ref(false);
+
+/** @param {HTMLElement} target */
+const closeMenu = (target) => {
+	target && target.setAttribute('data-show', 'false');
+	setTimeout(() => showMenu.value = false, 350);
+};
+const openMenu = () => showMenu.value = true;
+
+const time = ref('××:×× ××');
 onMounted(() => {
 	/** 初始化时钟 */
 	setInterval(() => {
 		const now = new Date();
 		const hour = now.getHours() < 10? `0${now.getHours()}`: now.getHours();
 		const minute = now.getMinutes() < 10? `0${now.getMinutes()}`: now.getMinutes();
-		const period = hour < 12? '上午': '下午';
+		const period = hour < 12? 'AM': 'PM';
 		time.value = `${hour}:${minute} ${period}`;
 	}, 1000);
 });
-
-const navMenu = useTemplateRef('navMenu');
-const navMenuBgShadow = useTemplateRef('navMenuBgShadow');
-const toggleMenu = () => {
-	navMenu.value.classList.toggle('show');
-	navMenuBgShadow.value.classList.toggle('show');
-}
-globalThis.toggleMenu = toggleMenu;
 </script>
 
 <template>
 	<div id="nav">
-		<div id="left">
+		<div class="left">
 			<router-link to="/" class="first"><span class="--lapis-icon"></span></router-link>
 
 			<router-link to="/member" class="more">成员</router-link>
 			<router-link to="/project" class="more">项目</router-link>
 		</div>
-		<div id="right">
+		<div class="right">
 			<router-link to="/about" class="more">关于</router-link>
-			<span id="time">{{time}}</span>
-			<a id="menu" href="#menu" class="less" @click.prevent="toggleMenu"><i class="fa fa-bars"></i></a>
+			<span class="time">{{ time }}</span>
+			<a class="menu" href="#menu" @click.prevent="openMenu"><i class="fa fa-bars"></i></a>
 		</div>
 
-		<div id="nav-menu" ref="navMenu">
-			<h2 style="margin-top: 0.2em;">菜单</h2>
-			<router-link to="/">首页</router-link>
-			<router-link to="/member">成员</router-link>
-			<router-link to="/project">项目</router-link>
-			<router-link to="/about">关于</router-link>
+		<div id="nav-menu" v-if="showMenu" @click.self="closeMenu($event.target)">
+			<h2 class="menu-title">菜单</h2>
+			<router-link class="menu-item" v-for="page in pages" :key="page.meta.name"
+			 :to="page.path">{{ page.meta.name }}</router-link>
 		</div>
-		<div id="nav-menu-bg-shadow" ref="navMenuBgShadow" @click="toggleMenu"></div>
 	</div>
 </template>
+
+<style>
+@keyframes menu-slide-in {
+	from { right: -40%; }
+	to { right: 0; }
+}
+@keyframes menu-slide-out {
+	from { right: 0; }
+	to { right: -40%; }
+}
+</style>
 
 <style scoped lang="scss">
 a {
@@ -70,14 +78,14 @@ a {
 		font-weight: bold;
 	}
 }
-#left {
+.left {
 	width: 50%;
 	display: inline-block;
 	&>:not(.first) {
 		margin-left: 1em;
 	}
 }
-#right {
+.right {
 	width: 50%;
 	display: inline-block;
 	text-align: right;
@@ -85,7 +93,7 @@ a {
 		margin-right: 1em;
 	}
 }
-#time {
+.time {
 	font-family: Minecraft, Unifont, system-ui, -apple-system, BlinkMacSystemFont;
 	font-style: normal;
 	user-select: none;
@@ -105,44 +113,26 @@ a {
 		transition: transform 0.3s ease-in-out;
 	}
 }
-.less, #nav-menu {
+.less, .menu {
 	display: none;
 }
 @media screen and (max-width: 768px) {
-	#nav {
+	.nav {
 		font-size: 125%;
 	}
-	/* #menu {
-		&>i {
-			position: relative;
-			display: inline-block;
-			width: 28px;
-			height: 2.5px;
-			color: #fff;
-			font: 700 14px/.4 Helvetica;
-			text-transform: uppercase;
-			text-indent: -55px;
-			background: #fff;
-			-webkit-transition: .2s;
-			transition: .2s;
-			&::before, &::after {
-				content: "";
-				width: 28px;
-				height: 2.5px;
-				background: #fff;
-				position: absolute;
-				left: 0;
-				transition: .2s;
-			}
-			&::before {
-				top: -10px;
-			}
-			&::after {
-				bottom: -10px;
-			}
-		}
-	} */
 	#nav-menu {
+		&::before {
+			content: '';
+			display: block;
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100vw;
+			height: 100vh;
+			backdrop-filter: blur(8px);
+			background-color: rgba(0,0,0,0.4);
+			z-index: -1;
+		}
 		display: flex;
 		flex-direction: column;
 		font-size: 115%;
@@ -150,40 +140,28 @@ a {
 		position: fixed;
 		top: 0;
 		right: -40%;
-		height: 100%;
+		height: 100vh;
 		width: 40%;
 		z-index: 10;
-		transition: .2s ease-in-out;
-		& * {
+		animation: menu-slide-in 0.3s forwards ease-in-out;
+		&[data-show="false"] {
+			animation: menu-slide-out 0.3s forwards ease-in-out;
+		}
+		.menu-title {
+			margin: 0.2em 0.4rem;
+		}
+		.menu-item {
+			border-radius: 6px 0 0 6px;
 			margin-left: 0.4rem;
-		}
-		&.show {
-			right: 0;
-		}
-	}
-	#nav-menu-bg-shadow {
-		display: block;
-		content: '';
-		position: fixed;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		background-color: rgba(0,0,0,0.4);
-		backdrop-filter: blur(10px);
-		opacity: 0;
-		z-index: 1;
-		transition: .2s;
-		pointer-events: none;
-		&.show {
-			opacity: 1;
-			pointer-events: auto;
+			&.router-link-active {
+				background-color: rgba(0, 122, 255, 0.2);
+			}
 		}
 	}
-	#right>*:not(:last-child) {
+	.right>*:not(:last-child) {
 		margin-right: 0.4rem;
 	}
-	.less {
+	.menu {
 		display: inline-block;
 	}
 	.more {
