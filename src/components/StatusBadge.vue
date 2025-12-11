@@ -9,7 +9,6 @@ const statusTexts = {
 const props = defineProps({
 	type: { type: String, default: 'unknown' }
 });
-console.log(props.type);
 </script>
 
 <template>
