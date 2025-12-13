@@ -17,7 +17,7 @@
 			<i class="fab fa-discord"></i><a href="https://discord.gg/m6BwyRp7Mv">Discord</a><br>
 		</div>
 		<div class="content" data-title="友情链接"><br>
-			<a href="https://wiki.lapis-net.top" target="_blank" rel="noopener noreferrer">LapisNet Wiki</a>
+			<a href="https://wiki.lapis-net.top" target="_blank" rel="noopener noreferrer">LapisNet Wiki</a><br>
 			<a href="https://mcisee.top" target="_blank" rel="noopener noreferrer">MCiSEE</a><br>
 		</div>
 	</div>
