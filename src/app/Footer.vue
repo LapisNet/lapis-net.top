@@ -17,9 +17,7 @@
 			<i class="fab fa-discord"></i><a href="https://discord.gg/m6BwyRp7Mv">Discord</a><br>
 		</div>
 		<div class="content" data-title="友情链接"><br>
-			<a href="https://mcisee.top" target="_blank" rel="noopener noreferrer">所见皆是MC</a><br>
-			<a href="https://fds.moe" target="_blank" rel="noopener noreferrer">FDS</a><br>
-			<a href="https://mc.xzwmc.com" target="_blank" rel="noopener noreferrer">饼盒</a><br>
+			<a href="https://mcisee.top" target="_blank" rel="noopener noreferrer">MCiSEE</a><br>
 		</div>
 	</div>
 </template>
