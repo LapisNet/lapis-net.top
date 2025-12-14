@@ -4,8 +4,7 @@ import {ref, onBeforeMount} from 'vue';
 /** @type {Member[]} */
 const members = ref([]);
 onBeforeMount(async() => {
-	const res = await fetch('https://ghfast.top/https://raw.githubusercontent.com/LapisNet/.public_data/refs/heads/main/members.json');
-	members.value = await res.json();
+	members.value = await (await import('../libs/fetch-data')).fetchData('members');
 });
 const openLink = (url) => url && window.open(url, '_blank', 'noopener,noreferrer');
 </script>

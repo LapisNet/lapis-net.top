@@ -1,3 +1,6 @@
+type DataName = 'news' | 'members' | 'projects' | 'projects_v2';
+type DataReturns = Promise<string> | Promise<Member[]> | Promise<Project[]> | Promise<ProjectV2[]>;
+
 type Project = {
 	/**
 	 * 状态
@@ -31,6 +34,27 @@ type Project = {
 	license?: string;
 	/** 链接 */
 	url?: string;
+};
+
+type ProjectV2 = {
+	_status?: string,
+	_show?: boolean,
+	name: string | {
+		current: string,
+		previous?: string
+	},
+	desc: string,
+	link?: string,
+	repo?: string,
+	license?: string,
+	target: string,
+	leader: {
+		name: string,
+		email?: string,
+		url?: string,
+		qq?: number,
+	},
+	next_release_at: string
 };
 
 type Member = {

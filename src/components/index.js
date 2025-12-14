@@ -1,4 +1,5 @@
 import StatusBadge from './StatusBadge.vue'
+import LicenseBadge from './LicenseBadge.vue'
 
 /**
  * @name defineComponents
@@ -7,4 +8,6 @@ import StatusBadge from './StatusBadge.vue'
 export default (app) => {
 	app.component('StatusBadge', StatusBadge)
 	   .component('status-badge', StatusBadge)
+	   .component('LicenseBadge', LicenseBadge)
+	   .component('license-badge', LicenseBadge)
 }

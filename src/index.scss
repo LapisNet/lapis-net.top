@@ -145,6 +145,12 @@
 	margin-left: 1.2em;
 }
 
+.badge {
+	padding: 0.1em 0.4em;
+	border-radius: 0.3em;
+	font-size: 0.6em;
+}
+
 .card {
 	text-decoration: none;
 	padding: 1.2em;
@@ -237,6 +243,24 @@
 		color: var(--pico-secondary);
 		font-size: 0.9em;
 		margin-bottom: 0.2em;
+	}
+
+	.pj-info {
+		font-size: 0.8em;
+		color: var(--pico-contrast);
+		margin-bottom: 0.4em;
+
+		*:not(:first-child) {
+			margin-left: 0.6em;
+			@media screen and (max-width: 768px) {
+				margin-left: 0.4em;
+			}
+		}
+
+		.pj-badges {
+			width: 100%;
+			display: flex;
+		}
 	}
 
 	.pj-link {

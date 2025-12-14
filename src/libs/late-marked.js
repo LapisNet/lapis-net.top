@@ -29,6 +29,6 @@ export const parseRawText = (text) => {
 		const regex = new RegExp(pattern, 'g');
 		return acc.replace(regex, replacement);
 	}, text);
-console.log(parsedText)
+	console.debug('[LateMarked]', text, '=>', parsedText);
 	return parsedText;
 }

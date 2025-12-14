@@ -20,8 +20,7 @@ function paseDate(date) {
 
 const news = ref([]);
 onBeforeMount(async() => {
-	const res = await fetch('https://ghfast.top/https://raw.githubusercontent.com/LapisNet/.public_data/refs/heads/main/news.txt');
-	let text = await res.text();
+	let text = await (await import('../libs/fetch-data')).fetchData('news');
 	text = text.trim().split('\n');
 	for(text of text) {
 		if(text.startsWith('#')) continue;

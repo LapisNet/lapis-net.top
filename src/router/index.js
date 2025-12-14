@@ -10,7 +10,8 @@ export const pages = [
 const routes = pages.concat([
 	{path: '/:pathMatch(.*)*', redirect: '/404'},
 	{path: '/404', component: () => import('@pages/404.vue')},
-	{path: '/debug', component: () => import('@pages/Debug.vue')}
+	{path: '/debug', component: () => import('@pages/Debug.vue')},
+	{path: '/project_v1', component: () => import('@pages/LegacyProject.vue')},
 ]);
 
 const router = createRouter({

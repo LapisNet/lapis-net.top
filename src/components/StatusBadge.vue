@@ -12,6 +12,6 @@ const props = defineProps({
 </script>
 
 <template>
-	<span class="status-badge" title="状态" :data-type="type ?? 'unknown'">{{ statusTexts[type ??
+	<span class="badge status-badge" title="状态" :data-type="type || 'unknown'">{{ statusTexts[type ||
 		'unknown'] }}</span>
 </template>
