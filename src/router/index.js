@@ -1,7 +1,8 @@
 import {createWebHistory, createRouter} from 'vue-router';
 
 export const pages = [
-	{path: '/', component: () => import('@pages/Home.vue'), meta: {name: '首页'}},
+	// {path: '/', component: () => import('@pages/Home.vue'), meta: {name: '首页'}},
+	{ path: '/', redirect: '/about', meta: { name: '首页' } },
 	{path: '/member', component: () => import('@pages/Member.vue'), meta: {name: '成员'}},
 	{path: '/project', component: () => import('@pages/Project.vue'), meta: {name: '项目'}},
 	{path: '/about', component: () => import('@pages/About.vue'), meta: {name: '关于'}}
