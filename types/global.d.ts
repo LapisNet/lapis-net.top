@@ -1,5 +1,5 @@
-type DataName = 'news' | 'members' | 'projects' | 'projects_v2';
-type DataReturns = Promise<string> | Promise<Member[]> | Promise<Project[]> | Promise<ProjectV2[]>;
+type DataName = 'news' | 'members' | 'projects' | 'projects_v2' | 'contacts' | 'links';
+type DataReturns = Promise<string> | Project<Array> | Promise<Member[]> | Promise<Project[]> | Promise<ProjectV2[]>;
 
 type Project = {
 	/**

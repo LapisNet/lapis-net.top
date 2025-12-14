@@ -8,8 +8,8 @@ const dataNames = {
 	members: 'members.json',
 	projects: 'projects.json',
 	projects_v2: 'projects2.jsonc',
-	// contacts: 'contacts.json',
-	// links: 'links.json',
+	contacts: 'contacts.json',
+	links: 'links.json',
 }
 
 /**
